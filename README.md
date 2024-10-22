@@ -58,12 +58,26 @@ The code in `main.py` initializes several agents, each with specific responsibil
 - **QueryIndexAgent**: Queries an index created from documents in the `./data` folder to retrieve relevant information.
 - **ResponseStructurerAgent**: Processes the output from the QueryIndexAgent and structures it into a readable format, focusing on complete code snippets and their explanations.
 
-## Example Workflow
+## Example Workflows
+
+### Full Workflow
 1. **Search for Information**: The `BraveSearchAgent` uses the Brave Search API to find relevant web content.
 2. **Open Links**: The `BrowserAgent` opens specific links in a browser window.
 3. **Extract Content**: The `SeleniumExtractorAgent` scrapes content from web pages.
 4. **Index and Query**: The `QueryIndexAgent` creates an index from the extracted content, generates embeddings, and allows querying for specific information using similarity search.
 5. **Structure Response**: The `ResponseStructurerAgent` takes the output from the QueryIndexAgent and structures it into a readable format, focusing on complete code snippets and their explanations.
+
+### Web Search and Content Extraction Workflow
+1. **Search for Information**: The `BraveSearchAgent` uses the Brave Search API to find relevant web content.
+2. **Open Links**: The `BrowserAgent` opens specific links in a browser window.
+3. **Extract Content**: The `SeleniumExtractorAgent` scrapes content from web pages.
+
+### Query Existing Index Workflow
+1. **Query Index**: The `QueryIndexAgent` queries an existing index for specific information using similarity search.
+2. **Structure Response**: The `ResponseStructurerAgent` takes the output from the QueryIndexAgent and structures it into a readable format, focusing on complete code snippets and their explanations.
+
+These workflows demonstrate the system's flexibility, allowing for different levels of interaction based on the user's needs and the current state of the index.
+
 
 ## Human-in-the-Loop
 The system supports continuous human feedback, allowing users to guide the agents, specify goals, and refine outputs throughout the process. This ensures that the agents' actions align with user expectations and objectives, and allows for real-time adjustments to the workflow.
