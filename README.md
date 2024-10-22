@@ -56,12 +56,14 @@ The code in `main.py` initializes several agents, each with specific responsibil
 - **BrowserAgent**: Opens URLs in Google Chrome, either in new windows or tabs.
 - **SeleniumExtractorAgent**: Extracts main content and code from web pages using Selenium and BeautifulSoup.
 - **QueryIndexAgent**: Queries an index created from documents in the `./data` folder to retrieve relevant information.
+- **ResponseStructurerAgent**: Processes the output from the QueryIndexAgent and structures it into a readable format, focusing on complete code snippets and their explanations.
 
 ## Example Workflow
 1. **Search for Information**: The `BraveSearchAgent` uses the Brave Search API to find relevant web content.
 2. **Open Links**: The `BrowserAgent` opens specific links in a browser window.
 3. **Extract Content**: The `SeleniumExtractorAgent` scrapes content from web pages.
 4. **Index and Query**: The `QueryIndexAgent` creates an index from the extracted content, generates embeddings, and allows querying for specific information using similarity search.
+5. **Structure Response**: The `ResponseStructurerAgent` takes the output from the QueryIndexAgent and structures it into a readable format, focusing on complete code snippets and their explanations.
 
 ## Human-in-the-Loop
 The system supports continuous human feedback, allowing users to guide the agents, specify goals, and refine outputs throughout the process. This ensures that the agents' actions align with user expectations and objectives, and allows for real-time adjustments to the workflow.

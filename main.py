@@ -89,10 +89,23 @@ query_index_agent.register_for_llm(name="query_index", description="Queries an i
 # Register the query_index tool for execution with the user_proxy agent
 user_proxy.register_for_execution(name="query_index")(query_index)
 
+# New agent for structuring the response
+response_structurer_agent = ConversableAgent(
+    name="ResponseStructurerAgent",
+    system_message=(
+        "Your name is ResponseStructurerAgent. You take the output from the QueryIndexAgent and structure it into a "
+        "readable format, focusing on code snippets and their explanations. Ensure that the code snippets are complete "
+        "and properly formatted. Your response should be clear, concise, and easy to understand."
+    ),
+    llm_config={"config_list": [{"model": "gpt-4o", "api_key": os.environ.get("OPENAI_API_KEY")}]},
+    code_execution_config=False,
+    function_map=None,
+    human_input_mode="NEVER",
+)
 
 # Create a GroupChat object with the list of agents
 group_chat = GroupChat(
-    agents=[brave_search_agent, browser_agent, user_proxy, selenium_extractor_agent, query_index_agent],
+    agents=[brave_search_agent, browser_agent, user_proxy, selenium_extractor_agent, query_index_agent, response_structurer_agent],
     messages=[],
     max_round=14,
 )
@@ -122,7 +135,7 @@ def agent_interaction():
     
     result = user_proxy.initiate_chat(
         group_chat_manager,
-        message="search for openai cookbook examples and let human decide which links to open, then extract the text from the links, save it to a folder and let human query the extracted text.",
+        message="query the index on how to generate function arguments",
         summary_method="reflection_with_llm"
     )
 
