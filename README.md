@@ -50,7 +50,6 @@ The code in `main.py` initializes several agents, each with specific responsibil
 - 🧠 **RAG Processing**: Creating embeddings, storing them, and performing similarity searches on scraped content.
 
 ## How to Use the Project
-[The content for this section remains the same as in your original README]
 
 ## Agent Descriptions
 - **BraveSearchAgent**: Searches the web using the Brave Search API and returns the top 20 links.
